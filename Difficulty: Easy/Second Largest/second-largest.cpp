@@ -12,15 +12,23 @@ class Solution {
     // largest elements
     int getSecondLargest(vector<int> &arr) {
         int n=arr.size();
-        int max=-1;
-        int smax=-1;
-        for(int i=0;i<n;i++){
-            if(max<arr[i]) max=arr[i];
+        int max,smax;
+        if(arr[0]>arr[1]){
+            max=arr[0];
+            smax=arr[1];
         }
-        for(int i=0;i<n;i++){
-            if(smax<arr[i] && (max !=arr[i])) smax=arr[i];
+        else{
+            max=arr[1];
+            smax=arr[0];
         }
-      
+        if(max==smax) return -1;
+        for(int i=2;i<n;i++){
+            if(max<arr[i]){
+                smax=max;
+                max=arr[i];
+            }
+            else if (smax<arr[i] && arr[i]!=max) smax=arr[i];
+        }
         return smax;
     }
 };
@@ -43,6 +51,7 @@ int main() {
         Solution ob;
         int ans = ob.getSecondLargest(arr);
         cout << ans << endl;
+        cout << "~" << endl;
     }
     return 0;
 }
