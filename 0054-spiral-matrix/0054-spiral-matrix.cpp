@@ -11,7 +11,7 @@ public:
    while((left<=right) && (top<=bottom)){
     
     for(int i=left;i<=right && count<num;i++){
-        v.push_back(matrix[left][i]);
+        v.push_back(matrix[top][i]);
         count++;
     }
     top++;
