@@ -1,34 +1,34 @@
 class Solution {
 public:
-    ListNode* reverse(ListNode* head) {
-        vector<int>v;
+    ListNode* reverseList(ListNode* head) {
+        ListNode*rest=head;
         ListNode*temp=head;
-        while(temp!=NULL){
-            v.push_back(temp->val);
-            temp=temp->next;
+        if(head==NULL) return head;
+        ListNode*test=head->next;
+        while(test!=NULL){
+           head=test;
+           test=test->next;
+           head->next=temp;
+           temp=head;
         }
-       //reverse(v.begin(), v.end());
-       ListNode*c=new ListNode(-100);
-       ListNode*a=c;
-       while(v.size()>0){
-          ListNode*test=new ListNode(v[v.size()-1]);
-             a->next=test;
-             a=a->next;
-             v.pop_back();
-       }
-       return c->next;
+        rest->next=NULL;
+        return temp;
     }
     bool isPalindrome(ListNode* head) {
-    ListNode*temp=head;
-    ListNode*c=reverse(head);    
-    ListNode*temp1=c;
-    bool flag=false;
-    while(temp!=NULL && temp1!=NULL){
-        if(temp->val!=temp1->val) flag=true;
-        temp=temp->next;
-        temp1=temp1->next; 
+    ListNode*slow=head;
+    ListNode*fast=head;
+    while(fast!=NULL && fast->next!=NULL){
+        slow=slow->next;
+        fast=fast->next->next;
     }
-    if(flag==true) return false;
-    else return true;
+    // slow->next=NULL;
+    ListNode*temp=head;
+    ListNode*test=reverseList(slow);
+    while(temp!=NULL && test!=NULL){
+        if(temp->val != test->val) return false;
+        test=test->next;
+        temp=temp->next;
+    }
+    return true;
     }
 };
