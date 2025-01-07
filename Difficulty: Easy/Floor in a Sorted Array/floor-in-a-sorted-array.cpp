@@ -9,15 +9,25 @@ class Solution {
 
     int findFloor(vector<int>& arr, int k) {
        int n=arr.size();
+       int first=-1;
        int lo=0,hi=n-1,mid;
        while(lo<=hi){
-            mid=(lo+hi)/2;
-           if(arr[mid]==k) return mid;
-           else if(arr[mid]>k) hi=mid-1;
-           else lo=mid+1;
-       } 
-       if(arr[mid]<k) return mid;
-       else return mid-1;
+           mid=(lo+hi)/2;
+           if(arr[mid]<=k){
+               first=mid;
+               lo=mid+1;
+           }
+           else hi=mid-1;
+       }
+       return first;
+    //   while(lo<=hi){
+    //         mid=(lo+hi)/2;
+    //       if(arr[mid]==k) return mid;
+    //       else if(arr[mid]>k) hi=mid-1;
+    //       else lo=mid+1;
+    //   } 
+    //   if(arr[mid]<k) return mid;
+    //   else return mid-1;
        
     }
 };
