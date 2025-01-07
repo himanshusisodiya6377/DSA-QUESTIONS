@@ -28,13 +28,43 @@ public:
        }
        return last;
     }
-    vector<int> searchRange(vector<int>& nums, int target) {
-        if(nums.size()==0) return {-1,-1};
-             int x=lowerbound(nums,target);
-             int y=upparbound(nums,target);
-             if(x>=0 && nums[x]==target) return{x,y};
-             else return {-1,-1};
-        //BAKWASS APPROACH (1ST MINE APPROACH!!)
+    vector<int> searchRange(vector<int>& arr, int k) {
+        //PLAIN BINARY SEARCH APPROACH
+              int n=arr.size();
+              vector<int>v(2,-1);
+              //to getting first element simply use lower bound
+       int first=-1;
+       int lo=0,hi=n-1;
+       while(lo<=hi){
+           int mid=(lo+hi)/2;
+           if(arr[mid]==k){
+               first=mid;
+               hi=mid-1;
+           }
+           else if(arr[mid]<k) lo=mid+1;
+           else hi=mid-1;
+       }
+       if(first>=0 && arr[first]==k) v[0]=first;
+         int last=-1;
+         lo=0,hi=n-1;
+       while(lo<=hi){
+          int mid=(lo+hi)/2;
+           if(arr[mid]==k){
+               last=mid;
+               lo=mid+1;
+           }
+           else if(arr[mid]<k) lo=mid+1;
+           else hi=mid-1;
+       }
+      if(last>=0 && arr[last]==k) v[1]=last;
+       return v;
+        //LOWER AND UPPAR BOUND APPROACH
+        // if(nums.size()==0) return {-1,-1};
+        //      int x=lowerbound(nums,target);
+        //      int y=upparbound(nums,target);
+        //      if(x>=0 && nums[x]==target) return{x,y};
+        //      else return {-1,-1};
+//BAKWASS APPROACH (1ST MINE APPROACH!!)
     //   int n=nums.size();
     //   vector<int>v={-1,-1};//decalaration of vector
     //   if(n==0) return v;
