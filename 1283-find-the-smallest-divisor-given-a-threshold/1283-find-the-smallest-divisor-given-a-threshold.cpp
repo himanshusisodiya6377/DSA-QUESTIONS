@@ -17,7 +17,7 @@ int sum(vector<int>&v,int n){
         while(lo<=hi){
             mid=(lo+hi)/2;
             int x=sum(nums,mid);
-            if(x<mini) mini=mid;
+            if(x<=threshold) mini=mid;
             if(x<=threshold) hi=mid-1;
             else lo=mid+1;
         }
