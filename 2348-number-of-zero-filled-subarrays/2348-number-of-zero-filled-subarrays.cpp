@@ -14,10 +14,11 @@ public:
         }
      }   
      v.push_back(count);
-     int sum=0;
+     long long sum=0;
      for(int i=0;i<v.size();i++){
         if(v[i]!=0){
-          sum+=((v[i]*(v[i]+1))/2);
+            long long prod=(long long)v[i]*(v[i]+1);
+          sum+=(prod/2);
         }
         
      }
