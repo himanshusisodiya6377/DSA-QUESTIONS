@@ -4,20 +4,23 @@ public:
         unordered_map<int,int>ms;
         unordered_map<int,int>mf;
         int k=trust.size();
-        if(k==0) return n;
+        if(k==0){
+            if(n==1) return n;
+            else return -1;
+        }
         for(int i=0;i<k;i++){
             ms[trust[i][1]]++;
             mf[trust[i][0]]++;
         }
-        vector<int>v;
+      int check=0;
         for(auto p: ms){
-            if(p.second==n-1) v.push_back(p.first);
+            if(p.second==n-1) check=p.first;
         }
-        for(int i=0;i<v.size();i++){
-            if(mf.find(v[i])==mf.end()){
-               return v[i];
+       
+            if(mf.find(check)==mf.end() && check!=0){
+               return check;
             }
-        }
+        
        return -1;
     }
 };
