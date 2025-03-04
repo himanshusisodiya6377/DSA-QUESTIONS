@@ -32,5 +32,16 @@ public:
         if (firs != sec)
             return false;
         return true;
+        
+
+        //we can also do this question with frequency approach
+        // vector<int>first(26,0);
+        // vector<int>sec(26,0);
+        // for(int i=0;i<n;i++) first[word1[i]-97]++;
+        // for(int i=0;i<m;i++) sec[word2[i]-97]++;
+        // sort(first.begin(),first.end());
+        // sort(sec.begin(),sec.end());
+        // if(first!=sec) return false;
+        // return true;
     }
 };
