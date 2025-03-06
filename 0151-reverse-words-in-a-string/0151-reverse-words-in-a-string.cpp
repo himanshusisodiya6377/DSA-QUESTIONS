@@ -47,23 +47,39 @@ public:
     //       if(i!=0) ans+=" ";
     //   } 
     //   return ans;
-    int n=s.length();
-    int i=0;
-    int l=0,r=0;
+
+    //approach 2
+    // int n=s.length();
+    // int i=0;
+    // int l=0,r=0;
+    // reverse(s.begin(),s.end());
+    // while(i<n){
+    //     while(i<n && s[i]!=' '){
+    //         s[r++]=s[i++];
+    //     }
+    //     if(l<r){
+    //          reverse(s.begin()+l,s.begin()+r);
+    //     s[r]=' ';
+    //     r++;
+    //     l=r;
+    //     }
+    //     i++;
+    // }
+    // s=s.substr(0,r-1);
+    // return s;
+
+    //approach 3--tokenization
     reverse(s.begin(),s.end());
-    while(i<n){
-        while(i<n && s[i]!=' '){
-            s[r++]=s[i++];
-        }
-        if(l<r){
-             reverse(s.begin()+l,s.begin()+r);
-        s[r]=' ';
-        r++;
-        l=r;
-        }
-        i++;
+    stringstream ss(s);
+    string words="";
+    string ans="";
+    while(ss>>words){
+        reverse(begin(words),end(words));
+        ans+=words;
+        ans+=' ';
     }
-    s=s.substr(0,r-1);
-    return s;
+    ans=ans.substr(0,ans.length()-1);
+    // reverse(s.begin(),s.end());
+    return ans;
     }
 };
