@@ -11,6 +11,7 @@ int security(string s){
     int numberOfBeams(vector<string>& bank) {
         int n=bank.size();
         // queue<int>q;
+        // TC O(n*m) SC O(1)
         int prev=0;
         int sum=0;
         for(int i=0;i<n;i++){
