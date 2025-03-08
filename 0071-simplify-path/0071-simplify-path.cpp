@@ -26,19 +26,19 @@ public:
             if(st.size()!=0) st.pop();
         }
         else if(check!="." && check!="") st.push(check);
-        stack<string> rev;
+        // stack<string> rev;
         while (st.size() != 0) {
             string tope = st.top();
-            rev.push(tope);
+            ans="/"+tope+ans;
             st.pop();
         }
         
-        while (rev.size() != 0) {
-            string tope = rev.top();
-            ans.push_back('/');
-            ans += tope;
-            rev.pop();
-        }
+        // while (rev.size() != 0) {
+        //     string tope = rev.top();
+        //     ans.push_back('/');
+        //     ans += tope;
+        //     rev.pop();
+        // }
         if(ans.size()==0) ans+="/";
         return ans;
     }
