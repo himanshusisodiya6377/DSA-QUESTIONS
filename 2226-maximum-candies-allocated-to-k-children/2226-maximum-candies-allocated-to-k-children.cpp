@@ -2,7 +2,7 @@ class Solution {
 public:
     int maximumCandies(vector<int>& candies, long long k) {
         int n = candies.size();
-        int sum = 0;
+        long long sum = 0;
         int maxi = INT_MIN;
         for (int i = 0; i < n; i++) {
             sum += candies[i];
