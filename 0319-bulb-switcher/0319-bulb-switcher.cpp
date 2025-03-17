@@ -1,13 +1,13 @@
 class Solution {
 public:
-    bool check(int mid, int n) {
-        long long int multi = (long long)mid * mid - mid;
-        long long int x = mid + multi;
-        if (x <= n)
-            return true;
-        else
-            return false;
-    }
+    // bool check(int mid, int n) {
+    //     long long int multi = (long long)mid * mid - mid;
+    //     long long int x = mid + multi;
+    //     if (x <= n)
+    //         return true;
+    //     else
+    //         return false;
+    // }
     int bulbSwitch(int n) {
         return sqrt(n);
         // if (n == 1 || n == 2)
