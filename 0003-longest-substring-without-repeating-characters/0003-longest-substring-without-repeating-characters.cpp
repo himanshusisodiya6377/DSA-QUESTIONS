@@ -12,9 +12,8 @@ public:
            }
            else{
                 maxi=max(maxi,j-i);
+                st.erase(s[i]);
                 i++;
-                j=i;
-                    st.clear();
            }
         }
         maxi=max(maxi,j-i);
