@@ -17,7 +17,8 @@ public:
             string ans="";
             for(auto c : num) ap[c-'a']++;
             for(int i=0;i<26;i++){
-                if(ap[i]!=0) ans.push_back(i+'a');
+                int freq=ap[i];
+                if(ap[i]>0) ans+=string(freq,i+'a');
             }
             mp[ans].push_back(num);
         }
