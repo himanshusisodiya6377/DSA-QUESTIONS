@@ -6,18 +6,6 @@ public:
         for(int i=0;i<n;i++){
             if(s[i]=='1') ans++;
         }
-        // int count=ans;
-        // for(int i=0;i<n;i++){
-        //     if(s[i]=='1') count--;
-        //     else if(count==0 && s[i]=='0') return ans; 
-        //     else break;
-        // }
-        // count=ans;
-        //  for(int i=n-1;i>=0;i--){
-        //     if(s[i]=='1') count--;
-        //     else if(count==0 && s[i]=='0') return ans;
-        //      else break;
-        // }
         int k=0,m=0;
         int count=0;
         while(m<n){
