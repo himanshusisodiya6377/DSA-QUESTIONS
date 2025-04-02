@@ -1,0 +1,16 @@
+class Solution {
+public:
+    long long maximumTripletValue(vector<int>& nums) {
+        int n = nums.size();
+        long long sum=0;
+        for(int i=0;i<n;i++){
+            for(int j=i+1;j<n;j++){
+                for(int k=j+1;k<n;k++){
+                    long long get=(nums[i]-nums[j])*nums[k];
+                    if(get>sum) sum=get;
+                }
+            }
+        }
+     return sum;
+    }
+};
