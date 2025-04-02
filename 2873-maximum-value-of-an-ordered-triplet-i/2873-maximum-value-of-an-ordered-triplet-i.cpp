@@ -6,7 +6,7 @@ public:
         for(int i=0;i<n;i++){
             for(int j=i+1;j<n;j++){
                 for(int k=j+1;k<n;k++){
-                    long long get=(nums[i]-nums[j])*nums[k];
+                    long long get=(1LL *(nums[i]-nums[j]))*nums[k];
                     if(get>sum) sum=get;
                 }
             }
