@@ -3,9 +3,10 @@ public:
     int totalMoney(int n) {
         int complete=n/7;
         int sum=0;
-        for(int i=1;i<=complete;i++){
-            sum+=(7*i+21);
-        }
+        // for(int i=1;i<=complete;i++){
+        //     sum+=(7*i+21);
+        // }
+        sum+=((7*complete*(complete+1))/2+21*complete);
         int start=complete+1;
         int remday=n-7*complete;
         int presum=((start-1)*(start))/2;
