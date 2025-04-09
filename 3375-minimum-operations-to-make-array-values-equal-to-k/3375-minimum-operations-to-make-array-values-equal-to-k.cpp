@@ -14,7 +14,7 @@ public:
              if(i<0) break;
              num=nums[i];
              count++;
-             if(num==k) break;
+            //  if(num==k) break;
         }
         if(num<k) return -1;
         if(num>k) count++;
