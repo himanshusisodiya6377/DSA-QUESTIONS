@@ -15,12 +15,18 @@ public:
             mp[sum]++;
         }
         int s=INT_MIN;
-        for(auto v : mp){
-            if(s<v.second) s=v.second;
-        }
+        // for(auto v : mp){
+        //     if(s<v.second) s=v.second;
+        // }
         int ans=0;
         for(auto v : mp){
             if(v.second==s) ans++;
+            else{
+                if(v.second>s){
+                    s=v.second;
+                    ans=1;
+                }
+            }
         }
         return ans;
     }
