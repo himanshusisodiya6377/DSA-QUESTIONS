@@ -7,7 +7,7 @@ public:
             if(nums[i]==val && nums[j]!=val){
                 swap(nums[i],nums[j]);
                 i++;
-                j++;
+                j--;
             }
             else if(nums[i]==val && nums[j]==val) j--;
             else i++;
