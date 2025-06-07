@@ -1,7 +1,7 @@
 class Solution {
 public:
     void path(TreeNode*root,vector<string>&ans,string v){
-   if(root==NULL) return;
+        if(root==NULL) return ;
    if(root->left==NULL && root->right==NULL){
     v+=to_string(root->val);
     ans.push_back(v);
