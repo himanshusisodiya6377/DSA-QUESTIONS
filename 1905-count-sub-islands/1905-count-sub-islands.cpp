@@ -23,7 +23,7 @@ public:
 
     int countSubIslands(vector<vector<int>>& grid1, vector<vector<int>>& grid2) {
         int r=grid1.size();
-        int c=grid2.size();
+        int c=grid1[0].size();
         int ans=0;
         vector<vector<bool>>visit(r,(vector<bool>(c,false)));
         for(int i=0;i<r;i++){
