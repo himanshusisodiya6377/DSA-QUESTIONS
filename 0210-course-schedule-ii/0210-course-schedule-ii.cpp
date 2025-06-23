@@ -8,7 +8,7 @@ public:
         }
     }
     void khanalgo(int courses, vector<vector<int>>& prerequisites,
-                  vector<int>& visit, int& count,vector<int>&ans) {
+                  vector<int>& visit, int& count, vector<int>& ans) {
         vector<int> degree(courses, 0);
         for (int i = 0; i < prerequisites.size(); i++) {
             degree[prerequisites[i][1]]++;
@@ -17,7 +17,6 @@ public:
         for (int i = 0; i < courses; i++) {
             if (degree[i] == 0) {
                 q.push(i);
-                visit[i] = 1;
             }
         }
         // bfs
@@ -27,24 +26,25 @@ public:
             ans.push_back(x);
             count++;
             for (auto neigh : ls[x]) {
-                if (visit[neigh] == 0) {
+            
                     degree[neigh]--;
                     if (degree[neigh] == 0) {
                         q.push(neigh);
-                        visit[neigh] = 1;
-                    }
+            
+                
                 }
             }
         }
     }
-    vector<int>findOrder(int numCourses, vector<vector<int>>& prerequisites) {
+    vector<int> findOrder(int numCourses, vector<vector<int>>& prerequisites) {
         vector<int> visit(numCourses, 0);
-        vector<int>ans;
+        vector<int> ans;
         int count = 0;
         creatls(prerequisites);
-        khanalgo(numCourses, prerequisites, visit, count,ans);
-        if(count!=numCourses) return {};
-        reverse(begin(ans),end(ans));
-       return ans;
+        khanalgo(numCourses, prerequisites, visit, count, ans);
+        if (count != numCourses)
+            return {};
+        reverse(begin(ans), end(ans));
+        return ans;
     }
 };
