@@ -27,10 +27,8 @@ public:
             for(auto neigh : ls[x]){
                 if(visit[neigh]==0){
                 degree[neigh]--;
-                if(degree[neigh]==0) {
-                    q.push(neigh);
+                if(degree[neigh]==0) q.push(neigh);
                 visit[neigh]=1;
-                }
                 }
             }
         }
@@ -38,7 +36,7 @@ public:
     bool canFinish(int numCourses, vector<vector<int>>& prerequisites) {
          vector<int>visit(numCourses,0);
          int count=0;
-          creatls(prerequisites);
+         creatls(prerequisites);
           khanalgo(numCourses,prerequisites,visit,count);
           if(count==numCourses) return true;
           else return false;
