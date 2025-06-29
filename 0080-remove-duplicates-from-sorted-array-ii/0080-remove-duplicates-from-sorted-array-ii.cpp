@@ -12,7 +12,7 @@ public:
             if(mp.find(nums[j])!=mp.end()){
                 mp[nums[j]]--;
                 if(mp[nums[j]]==0) mp.erase(nums[j]);
-                swap(nums[i],nums[j]);
+                if(i!=j) swap(nums[i],nums[j]);
                 i++;
                 j++;           
             }
