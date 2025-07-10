@@ -4,8 +4,7 @@ public:
           if(root==NULL) return;
           helper(v,root->left);
           v.push_back(root->val);
-           helper(v,root->right);
-           return;
+           helper(v,root->right);     
     }
     bool isValidBST(TreeNode* root) {
         vector<int>v;
