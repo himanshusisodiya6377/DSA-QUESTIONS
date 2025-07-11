@@ -1,39 +1,30 @@
 class Solution {
 public:
-TreeNode*build(vector<int>in,int inlo,int inhi,vector<int>post,int postlo,int posthi){
-    if(inhi<inlo) return NULL;
-    TreeNode*node=new TreeNode(post[posthi]);
-    if(inlo==inhi) return node;
-    int i=inlo;
-    while(i<=inhi){
-        if(in[i]==post[posthi]) break;
-        i++;
+
+    TreeNode*solve(vector<int>& inorder, vector<int>& postorder,int start,int end,int &idx){
+        if(start>end) return NULL;
+
+        int rootval=postorder[idx];
+        int i=start;
+
+        for(;i<=end;i++){
+            if(inorder[i]==rootval) break;
+        }
+
+        idx--;
+
+        TreeNode*root=new TreeNode(rootval);
+
+        root->right=solve(inorder,postorder,i+1,end,idx);
+        root->left=solve(inorder,postorder,start,i-1,idx);
+
+        return root;
+
     }
-    int leftcount=i-inlo;
-    int rightcount=inhi-i;
-    node->left=build(in,inlo,i-1,post,postlo,postlo+leftcount-1);
-     node->right=build(in,i+1,inhi,post,postlo+leftcount,posthi-1);
-    return node;
-}
-    TreeNode* buildTree(vector<int>& in, vector<int>& post) {
-        int n=in.size();
-        return build(in,0,n-1,post,0,n-1);
+
+    TreeNode* buildTree(vector<int>& inorder, vector<int>& postorder) {
+        int n=postorder.size();
+        int idx=n-1;
+        return solve(inorder,postorder,0,n-1,idx);
     }
 };
-/*
-TreeNode*build(vector<int>pre,int prelo,int prehi,vector<int>in,int inlo,int inhi){
-    if(prehi<prelo) return NULL;
-    TreeNode*node=new TreeNode(pre[prelo]);
-    if(prelo==prehi) return node;
-    int i=inlo;
-    while(i<=inhi){
-        if(in[i]==pre[prelo]) break;
-        i++;
-    }
-    int leftcount=i-inlo;
-    int rightcount=inhi-i;
-    node->left=build(pre,prelo+1,prelo+leftcount,in,inlo,i-1);
-    node->right=build(pre,prelo+leftcount+1,prehi,in,i+1,inhi);
-    return node;
-}
-*/
