@@ -16,6 +16,7 @@ public:
     }
 
     vector<vector<int>> pathSum(TreeNode* root, int targetSum) {
+        if(root==NULL) return {};
         vector<vector<int>>ans;
         vector<int>v;
         int sum=0;
