@@ -20,7 +20,7 @@ public:
         string check="";
      
        for(int i=0;i<temp.length();i++){
-         if(check.length()==0) check.push_back(s[i]);
+         if(check.length()==0) check.push_back(temp[i]);
             else{
                 char ch=check[check.length()-1];
                 if(ch=='a' && temp[i]=='b'){
@@ -34,7 +34,7 @@ public:
                 else check.push_back(temp[i]);
             }
        }
-        }
+        }///////////
         else{
             string temp="";
         for(int i=0;i<n;i++){
@@ -52,7 +52,7 @@ public:
         string check="";
      
        for(int i=0;i<temp.length();i++){
-         if(check.length()==0) check.push_back(s[i]);
+         if(check.length()==0) check.push_back(temp[i]);
             else{
                 char ch=check[check.length()-1];
                 if(ch=='b' && temp[i]=='a'){
