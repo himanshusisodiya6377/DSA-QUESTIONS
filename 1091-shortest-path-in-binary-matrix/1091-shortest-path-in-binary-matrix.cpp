@@ -11,11 +11,12 @@ public:
     int shortestPathBinaryMatrix(vector<vector<int>>& grid) {
        int r=grid.size();
        int c=grid[0].size();
+       if(grid[0][0]==1 || grid[r-1][c-1]==1) return -1;
        vector<vector<int>>dist(r,vector<int>(c,INT_MAX));
-       dist[0][0]=0;
+       dist[0][0]=1;
        vector<pair<int,int>>path={{0,1},{0,-1},{1,0},{-1,0},{1,1},{-1,-1},{-1,1},{1,-1}};
        priority_queue<p,vector<p>,greater<p>>pq;
-       pq.push({0,{0,0}});
+       pq.push({1,{0,0}});
 
        while(!pq.empty()){
         auto v =pq.top();
@@ -35,7 +36,7 @@ public:
             }
         }
        }
-       if(grid[0][0]==1 || grid[r-1][c-1]==1) return -1;
-       return dist[r-1][c-1]+1;
+       return dist[r-1][c-1] == INT_MAX ? -1 : dist[r-1][c-1];
+
     }
 };
