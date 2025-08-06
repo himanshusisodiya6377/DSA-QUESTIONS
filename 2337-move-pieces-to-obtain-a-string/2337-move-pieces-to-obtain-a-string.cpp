@@ -5,25 +5,21 @@ public:
         int m=target.length();
         if(m!=n) return false;
 
-        int i=0,j=0;
+        // int i=0,j=0;
 
-        while(i<n && j<m){
-            if(start[i]=='_' || target[j]=='_'){
-                while(i<n && start[i]=='_') i++;
-                while(j<m && target[j]=='_') j++;
-            }
-            else{
-                if(start[i]==target[j]){
-                    i++;
-                    j++;
-                }
-                else return false;
-            }
-        }
-
-        if(target[m-1]=='_' && start[n-1]=='R') return false;
-        if(target[0]=='_' && start[0]=='L') return false;
-
+        // while(i<n && j<m){
+        //     if(start[i]=='_' || target[j]=='_'){
+        //         while(i<n && start[i]=='_') i++;
+        //         while(j<m && target[j]=='_') j++;
+        //     }
+        //     else{
+        //         if(start[i]==target[j]){
+        //             i++;
+        //             j++;
+        //         }
+        //         else return false;
+        //     }
+        // }
         vector<pair<char,int>>str;
         vector<pair<char,int>>tar;
 
@@ -47,6 +43,11 @@ public:
                 if(tr.second<st.second) return false;
             }
         }
+
+        if(target[m-1]=='_' && start[n-1]=='R') return false;
+        if(target[0]=='_' && start[0]=='L') return false;
+
+       
         
         return true;
     }
