@@ -1,7 +1,7 @@
 class Solution {
 public:
     set<vector<int>>st;
-    set<int>visit;
+    unordered_set<int>visit;
 
     void solve(vector<int>&nums,vector<int>&temp){
  
