@@ -1,5 +1,6 @@
 class Solution {
 public:
+   //handling visited elements
     unordered_set<int>st;
     void solve(vector<int>&temp,vector<int>&nums,vector<vector<int>>&result){
         if(temp.size()==nums.size()){
@@ -9,6 +10,7 @@ public:
         
         int n=nums.size();
         for(int i=0;i<n;i++){
+            //preventing from copying same element
              if(st.find(nums[i])==st.end()){
                 temp.push_back(nums[i]);
                 st.insert(nums[i]);
