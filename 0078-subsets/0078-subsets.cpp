@@ -1,21 +1,35 @@
 class Solution {
 public:
-    vector<vector<int>> ans;
-    void helper(vector<int>&nums,vector<int>temp,int i){
-     if(i==nums.size()){
-        ans.push_back(temp);
-        return;
-     }
-     temp.push_back(nums[i]);
-     helper(nums,temp,i+1);
-     temp.pop_back();
-     helper(nums,temp,i+1);
-    }
+
+//   unordered_set<int>st;
+ 
+   void solve(vector<int>&nums,vector<vector<int>>&ans,vector<int>&temp,int idx){
+       
+      if(idx>nums.size()) return;
+
+       ans.push_back(temp);
+
+       for(int i=idx;i<nums.size();i++){
+  
+     
+        
+            temp.push_back(nums[i]);
+            // st.insert(nums[i]);
+
+            solve(nums,ans,temp,i+1);
+
+            temp.pop_back();
+            // st.erase(nums[i]);
+
+        
+       }
+
+   }
+
     vector<vector<int>> subsets(vector<int>& nums) {
-        int n = nums.size();
-       vector<int>temp;
-       int i=0;
-        helper(nums,temp,i);
+        vector<vector<int>>ans;
+        vector<int>temp;
+        solve(nums,ans,temp,0);
         return ans;
     }
 };
