@@ -12,6 +12,8 @@ public:
 
        if(n>=word.length()) return true;
 
+       if(board[i][j]==word[word.length()-1] && n==word.length()-1) return true;
+
        if(board[i][j]!=word[n]) return false;
 
        for(auto it : dir){
