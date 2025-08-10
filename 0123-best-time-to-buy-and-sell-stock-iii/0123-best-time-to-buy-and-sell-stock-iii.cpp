@@ -4,6 +4,8 @@ public:
     int solve(vector<int>&prices, vector<vector<vector<int>>>&dp,int index,int holding,int transaction){
 
        if(index>=prices.size() || transaction==0) return 0;
+
+       if(dp[index][holding][transaction]!=-1) return dp[index][holding][transaction];
  
         int profit=0;
 
@@ -12,7 +14,7 @@ public:
         }
         else profit=max(solve(prices,dp,index+1,1,transaction),solve(prices,dp,index+1,0,transaction-1)+prices[index]);
        
-        return profit;
+        return dp[index][holding][transaction]=profit;
 
     }
 
