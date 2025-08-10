@@ -5,14 +5,17 @@ public:
         long long count = 30;
         unordered_set<string> st;
         while (count > 0) {
-            string ans = "";
-            long long temp = m;
-            while (temp > 0) {
-                long long k = temp % 10;
-                ans.push_back(char(k + '0'));
-                temp /= 10;
-            }
-            sort(ans.begin(), ans.end());
+            // string ans = "";
+            // long long temp = m;
+            // while (temp > 0) {
+            //     long long k = temp % 10;
+            //     ans.push_back(char(k + '0'));
+            //     temp /= 10;
+            // }
+            // sort(ans.begin(), ans.end());
+            int temp=m;
+            string ans=to_string(temp);
+            sort(ans.begin(),ans.end());
             st.insert(ans);
             count--;
             m*=2;
