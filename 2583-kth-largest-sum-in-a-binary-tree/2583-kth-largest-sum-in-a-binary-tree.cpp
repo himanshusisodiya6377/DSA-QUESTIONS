@@ -1,7 +1,7 @@
 class Solution {
 public:
       
-    void solve(TreeNode*root,unordered_map<int,int>&mp,int level){
+    void solve(TreeNode*root,unordered_map<long long,long long>&mp,long long level){
         if(root==NULL) return;
          
         if(mp.find(level)==mp.end()) mp[level]=root->val;
@@ -13,9 +13,9 @@ public:
     }
 
     long long kthLargestLevelSum(TreeNode* root, int k) {
-        unordered_map<int,int>mp;
+        unordered_map<long long,long long>mp;
         solve(root,mp,1);
-        priority_queue<int>pq;
+        priority_queue<long long>pq;
 
         for(auto it : mp){
             pq.push(it.second);
