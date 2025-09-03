@@ -11,7 +11,7 @@ public:
         int n=points.size();
         int cnt=0;
         for(int i=0;i<n;i++){
-            int min_y=-1;
+            int min_y=INT_MIN;
             int x=points[i][0];
             int y=points[i][1];
             for(int j=i+1;j<n;j++){
