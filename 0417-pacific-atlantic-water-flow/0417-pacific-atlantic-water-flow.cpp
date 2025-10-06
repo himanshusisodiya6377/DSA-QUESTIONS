@@ -57,7 +57,7 @@ public:
 
          for(int i=0;i<r;i++){
             for(int j=0;j<c;j++){
-              if(pacific[i][j]==atlantic[i][j]){
+              if(pacific[i][j]==atlantic[i][j] &&(pacific[i][j]==1 && atlantic[i][j]==1)){
                 ans.push_back({i,j});
               }
             }
