@@ -3,7 +3,7 @@ public:
     int minGroups(vector<vector<int>>& intervals) {
         int n=intervals.size();
         sort(intervals.begin(),intervals.end());
-        int num=0;
+        int num=1;
         priority_queue<int,vector<int>,greater<int>>pq;
         pq.push(intervals[0][1]);
         for(int i=1;i<n;i++){
@@ -11,7 +11,10 @@ public:
                 pq.pop();
                 pq.push(intervals[i][1]);
             }
-            else num++;
+            else{
+                num++;
+                pq.push(intervals[i][1]);
+            }
         }
         if(num==0) return 1;
         return num;
