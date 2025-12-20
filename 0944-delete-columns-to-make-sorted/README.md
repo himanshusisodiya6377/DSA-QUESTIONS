@@ -1,4 +1,4 @@
-<h2><a href="https://leetcode.com/problems/delete-columns-to-make-sorted">944. Delete Columns to Make Sorted</a></h2><h3>Easy</h3><hr><p>You are given an array of <code>n</code> strings <code>strs</code>, all of the same length.</p>
+<h2><a href="https://leetcode.com/problems/delete-columns-to-make-sorted/description/?envType=daily-question&envId=2025-12-20">944. Delete Columns to Make Sorted</a></h2><h3>Easy</h3><hr><p>You are given an array of <code>n</code> strings <code>strs</code>, all of the same length.</p>
 
 <p>The strings can be arranged such that there is one on each line, making a grid.</p>
 
