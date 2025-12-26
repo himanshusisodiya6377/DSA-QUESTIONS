@@ -1,24 +1,23 @@
 class Solution {
 public:
-    int numSubarraysWithSum(vector<int>& nums, int goal) {
-        int n = nums.size();
-        int i = 0, j = 0;
-        int ans = 0;
-        int window_sum=0;
-        int count_zero=0;
+    //note down chotu bhaiya method
+    int solve(vector<int>&nums,int goal){
+        int n=nums.size();
+        int i=0,j=0;
+        int ans=0;
+        int sum=0;
         while(j<n){
-            window_sum+=nums[j];
-            while(i<j && (nums[i]==0 || window_sum>goal)){
-                if(nums[i]==0) count_zero++;
-                else count_zero=0;
-                window_sum-=nums[i];
+            sum+=nums[j];
+            while(i<=j && sum>goal){
+                sum-=nums[i];
                 i++;
             }
-            if(window_sum==goal){
-                ans+=1+count_zero;
-            }
+            ans+=(j-i+1);
             j++;
         }
         return ans;
+    }
+    int numSubarraysWithSum(vector<int>& nums, int goal) {
+       return solve(nums,goal)-solve(nums,goal-1);
     }
 };
