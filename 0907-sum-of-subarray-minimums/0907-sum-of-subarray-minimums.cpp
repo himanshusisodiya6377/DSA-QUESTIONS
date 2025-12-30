@@ -3,22 +3,54 @@ public:
     long long mod=1000000007;
     int sumSubarrayMins(vector<int>& arr) {
         int n=arr.size();
+        vector<int>pre_smaller(n,-1);
+        vector<int>next_smaller(n,n);
+
+        //conclude pre smaller
+        stack<int>st;
+        st.push(0);
+
+        for(int i=1;i<n;i++){
+            while(!st.empty() && arr[st.top()]>=arr[i]){
+                st.pop();
+            }
+            if(!st.empty()) pre_smaller[i]=st.top();
+            st.push(i);
+        }
+
+        //conclude next smaller
+        stack<int>s;
+        s.push(n-1);
+
+        for(int i=n-2;i>=0;i--){
+            while(!s.empty() && arr[s.top()]>arr[i]){
+                s.pop();
+            }
+            if(!s.empty()) next_smaller[i]=s.top();
+            s.push(i);
+        }
+        
+        // for(auto &it : pre_smaller) cout<<it<<" ";
+        // cout<<endl;
+        // for(auto &it : next_smaller) cout<<it<<" ";
         int ans=0;
         for(int i=0;i<n;i++){
             int left=0,right=0;
-            int k=i;
-            //left count
-            while( k>=1 && arr[k-1]>arr[i]){
-                 k--;
-                 left++;
+            if(pre_smaller[i]==-1){
+               left=i+1;
             }
-            //right count
-            k=i;
-            while( k<n-1 && arr[k+1]>=arr[i]){
-                k++;
-                right++;
+            else{
+               left=i-pre_smaller[i];
             }
-            int size=(((left+1)%mod)*((right+1)%mod))%mod;
+
+            if(next_smaller[i]==n){
+               right=n-i;
+            }
+            else{
+               right=next_smaller[i]-i;
+            }
+            int size=(((left)%mod)*((right)%mod))%mod;
+            cout<<size<<endl;
             ans+=((size%mod)*(arr[i]%mod))%mod;
             ans=ans%mod;
         }
