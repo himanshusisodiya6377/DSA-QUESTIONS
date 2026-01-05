@@ -1,39 +1,21 @@
 class Solution {
 public:
-
-   void dfs(TreeNode*root, unordered_map<int,int>&mp,int &ans){
-       
-       if(root==NULL) return; 
-       
-       if(root->left==NULL && root->right==NULL){
-        mp[root->val]++;
-        int cnt=0;
-        for(auto v : mp){
-            if(v.second%2!=0) cnt++;
+    int solve(TreeNode*root,int mask){
+        if(root==NULL) return 0;
+        
+        
+        if(root->left==NULL && root->right==NULL){
+            mask^=(1<<root->val);
+            if ((mask & (mask - 1)) == 0) return 1;
+            return 0;
         }
-         if(cnt<=1) ans++;
+        
+        mask^=(1<<root->val);
 
-          mp[root->val]--;
-         if(mp[root->val]==0){
-          mp.erase(root->val);
-         }
-
-         return;
-       }
-       
-       mp[root->val]++;
-       dfs(root->left,mp,ans);
-       dfs(root->right,mp,ans);
-       mp[root->val]--;
-       if(mp[root->val]==0){
-        mp.erase(root->val);
-       }
-   }
-
+        return solve(root->left,mask) + solve(root->right,mask);
+    }
     int pseudoPalindromicPaths (TreeNode* root) {
-        unordered_map<int,int>mp;
-        int ans=0;
-        dfs(root,mp,ans);
-        return ans;
+        //marking fir use of bit set in it
+        return solve(root,0);
     }
 };
