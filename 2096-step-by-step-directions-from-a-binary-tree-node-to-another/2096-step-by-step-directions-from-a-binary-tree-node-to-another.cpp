@@ -1,5 +1,21 @@
 class Solution {
 public:
+/*
+🌳 Why there is ONLY ONE WAY in a tree
+🔑 Definition of a tree
+
+A tree is a connected graph with no cycles.
+
+That gives us two critical properties:
+
+There is exactly one simple path between any two nodes
+
+No alternative routes exist
+
+So between startValue and destValue:
+
+✔️ There is exactly ONE path
+*/
     void creat_graph(TreeNode*root,unordered_map<int,vector<pair<int,char>>>&adj){
              if(root==NULL) return;
              if(root->left) {
