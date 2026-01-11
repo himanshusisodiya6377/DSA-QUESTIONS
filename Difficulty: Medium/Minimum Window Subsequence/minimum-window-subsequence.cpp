@@ -7,30 +7,31 @@ class Solution {
         int i=0,j=0;
         int ans=INT_MAX;
         int idx=-1;
-        int k=0;
+        // int k=0;
         
         while(i<n){
             //moving i to match both string first
-            while(i<n && s1[i]!=s2[0]) i++;
-             
-            //moving j to match both string
-            j=i;
-            k=0;
-            while(j<n && k<m){
-                if(s1[j]==s2[k]){
-                    j++;
-                    k++;
+            if(s1[i]==s2[j]){
+                j++;
+                
+                if(j==m){
+                    int end=i;
+                    j--;
+                    
+                    while(j>=0){
+                        if(s1[i]==s2[j]) j--;
+                        i--;
+                    }
+                    
+                    j=0;
+                    i++;
+                    
+                    if(end-i+1<ans){
+                        ans=end-i+1;
+                        idx=i;
+                    }
                 }
-                else j++;
             }
-            
-            if(k==m){
-                if(j-i<ans){
-                    ans=j-i;
-                    idx=i;
-                }
-            }
-            
             i++;
         }
         if(idx==-1) return "";
