@@ -1,38 +1,39 @@
 class Solution {
 public:
-    typedef pair<int, int> p;
-    int candy(vector<int>& rat) {
-        int n = rat.size();
-        vector<int> v(n, 1);
-        // int cand=n;
+   //i have coded and accepted but its optimized approach is impressive
+    int candy(vector<int>& ratings) {
+        int n=ratings.size();
+        int candy=n;
 
-        priority_queue<p, vector<p>, greater<p>> pq;
+        int i=1;
 
-        for (int i = 0; i < n; i++)
-            pq.push({rat[i], i});
-        while (!pq.empty()) {
-            auto p = pq.top();
-            pq.pop();
+        while(i<n){
 
-            int idx = p.second;
-
-            int candy = 1;
-
-            if (idx > 0 && rat[idx - 1] < rat[idx]) {
-                candy = max(candy, v[idx - 1] + 1);
+            if(ratings[i]==ratings[i-1]){
+                i++;
+                continue;
             }
 
-            if (idx < n - 1 && rat[idx] > rat[idx + 1]) {
-                candy = max(candy, v[idx + 1] + 1);
+            //increasing
+            int peak=0;
+            while(ratings[i]>ratings[i-1]){
+                peak++;
+                candy+=peak;
+                i++;
+
+                if(i==n) return candy;
             }
 
-            v[idx] = candy;
+            int dip=0;
+            while(i<n && ratings[i]<ratings[i-1]){
+                dip++;
+                candy+=dip;
+                i++;
+            }
+
+            candy-=min(peak,dip);
         }
 
-        int cand = 0;
-        for (auto& it : v) {
-            cand += it;
-        }
-        return cand;
+        return candy;
     }
 };
