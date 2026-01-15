@@ -1,58 +1,38 @@
 class Solution {
 public:
-    int candy(vector<int>& ratings) {
-        int n=ratings.size();
-        if(n==1) return 1;
-        priority_queue<pair<int,int>,vector<pair<int,int>>,greater<pair<int,int>>>pq;
-        unordered_map<int,int>candy;
-        // unordered_map<int,int>rate;
+    typedef pair<int, int> p;
+    int candy(vector<int>& rat) {
+        int n = rat.size();
+        vector<int> v(n, 1);
+        // int cand=n;
 
-        // creating require database
-        for(int i=0;i<n;i++){
-            pq.push({ratings[i],i});
-            candy[i]=1;
-            // rate[i]=ratings[i];
-        }
+        priority_queue<p, vector<p>, greater<p>> pq;
 
-        int mini=pq.top().second;
-
-        int ans=0;
-
-        while(!pq.empty()){
-            pair<int,int>p=pq.top();
+        for (int i = 0; i < n; i++)
+            pq.push({rat[i], i});
+        while (!pq.empty()) {
+            auto p = pq.top();
             pq.pop();
-            int idx=p.second;
-            if(idx==0){
-                if(ratings[idx+1]<ratings[idx]){
-                    candy[idx]=candy[idx+1]+1;
-                    ans+=candy[idx];
-                }
-                else ans+=candy[idx];
+
+            int idx = p.second;
+
+            int candy = 1;
+
+            if (idx > 0 && rat[idx - 1] < rat[idx]) {
+                candy = max(candy, v[idx - 1] + 1);
             }
-            else if(idx==n-1){
-                if(ratings[idx-1]<ratings[idx]){
-                    candy[idx]=candy[idx-1]+1;
-                     ans+=candy[idx];
-                }
-                else ans+=candy[idx];
+
+            if (idx < n - 1 && rat[idx] > rat[idx + 1]) {
+                candy = max(candy, v[idx + 1] + 1);
             }
-            else{
-                if(ratings[idx-1]<ratings[idx] && ratings[idx+1]<ratings[idx]){
-                    candy[idx]=max(candy[idx-1],candy[idx+1])+1;
-                     ans+=candy[idx];
-                }
-                else if(ratings[idx-1]<ratings[idx]){
-                    candy[idx]=candy[idx-1]+1;
-                     ans+=candy[idx];
-                }
-                else if(ratings[idx+1]<ratings[idx]){
-                    candy[idx]=candy[idx+1]+1;
-                     ans+=candy[idx];
-                }
-                else ans+=candy[idx];
-            }
+
+            v[idx] = candy;
         }
-        // ans+=candy[mini];
-         return ans;
+
+        int cand = 0;
+        for (auto& it : v) {
+            cand += it;
+        }
+        return cand;
     }
 };
