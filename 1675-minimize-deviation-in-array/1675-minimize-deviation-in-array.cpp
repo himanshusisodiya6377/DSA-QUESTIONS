@@ -1,5 +1,8 @@
 class Solution {
 public:
+    //first make all possible value to maximum limit and then maintain a max heap
+    //  run pq until top/2 is odd as it cant be further divide and we will get our optimal answer
+    //min_val is to be handled differently
     int minimumDeviation(vector<int>& nums) {
         int n=nums.size();
         
