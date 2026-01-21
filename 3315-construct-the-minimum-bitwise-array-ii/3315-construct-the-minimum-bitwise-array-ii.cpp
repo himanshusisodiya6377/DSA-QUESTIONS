@@ -5,7 +5,6 @@ public:
         
         int i=0;
 
-        // string s=to_string(n);
         int len=ceil(log2(n));
 
         int mini=INT_MAX;
@@ -13,8 +12,6 @@ public:
            temp=n;
 
            temp = temp ^ (1 << i);
-
-        //    if(temp==n) break;
 
            if((temp | (temp+1))==n){
             mini=min(mini,temp);
