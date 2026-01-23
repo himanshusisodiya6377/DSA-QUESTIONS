@@ -1,23 +1,42 @@
 class Solution {
 public:
+    typedef pair<int,string> p;
+    //main thing is this
+   struct Compare {
+    bool operator()(const pair<int, string>& a,
+                    const pair<int, string>& b) {
+        if (a.first == b.first) {
+            return a.second < b.second; 
+    
+        }
+        return a.first > b.first; 
+    }
+};
     vector<string> topKFrequent(vector<string>& words, int k) {
+        int n=words.size();
+
+        priority_queue<p,vector<p>,Compare>pq;
+
         unordered_map<string,int>mp;
-        for(int i=0;i<words.size();i++){
-            mp[words[i]]++;//freq map
+        for(auto &it : words){
+            mp[it]++;
         }
+
+        for(auto &it : mp){
+            pq.push({it.second,it.first});
+            while(!pq.empty() && pq.size()>k){
+                pq.pop();
+            }
+        }
+
         vector<string>ans;
-        vector<pair<string, int>>Pairs;
-        for(auto p : mp){
-            Pairs.push_back(p);
+        while(!pq.empty()){
+            ans.push_back(pq.top().second);
+            pq.pop();
         }
-        sort(Pairs.begin(), Pairs.end(), [](const auto& a, const auto& b) {
-        return a.second < b.second; // Ascending order
-    }); 
-    int m=Pairs.size()-1;
-       for(int i=m;i>m-k;i--){
-          ans.push_back(Pairs[i].first);
-       }
-    //    sort(ans.begin(),ans.end());
-       return ans;
+
+        reverse(ans.begin(),ans.end());
+
+        return ans;
     }
 };
