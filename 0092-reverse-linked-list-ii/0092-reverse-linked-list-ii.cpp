@@ -1,37 +1,37 @@
-/**
- * Definition for singly-linked list.
- * struct ListNode {
- *     int val;
- *     ListNode *next;
- *     ListNode() : val(0), next(nullptr) {}
- *     ListNode(int x) : val(x), next(nullptr) {}
- *     ListNode(int x, ListNode *next) : val(x), next(next) {}
- * };
- */
 class Solution {
 public:
     ListNode* reverseBetween(ListNode* head, int left, int right) {
-        vector<int>v;
-        ListNode*temp=head;
-        while(temp!=NULL){
-            v.push_back(temp->val);
-            temp=temp->next;
-        }
-        reverse(v.begin()+left-1,v.begin()+right);
+        if(head->next==NULL || head==NULL) return head;
+        ListNode*curr=head;
+        ListNode*prev=NULL;
+        ListNode*nxt=head->next;
+        ListNode*conn=NULL;
+        int temp=left;
 
-        ListNode*c=new ListNode(-1);
-        temp=c;
-        for(int i=0;i<v.size();i++){
-            ListNode*d=new ListNode(v[i]);
-            if(c==NULL){
-                c->next=d;
-                temp=d;
-            }
-            else{
-                temp->next=d;
-                temp=d;
-            }
+        while(left>1){
+            conn=curr;
+            prev=curr;
+            curr=nxt;
+            nxt=nxt->next;
+            left--;
         }
-        return c->next;
+
+        ListNode*lf=curr;
+        int diff=right-temp;
+        while(diff>=0){
+            
+            curr->next=prev;
+            prev=curr;
+            curr=nxt;
+            if(nxt!=NULL) nxt=nxt->next;
+            diff--;
+
+        }
+
+        //now connct
+        lf->next=curr;
+        if(conn!=NULL) conn->next=prev;
+
+        return (temp==1 ? prev :head);
     }
 };
