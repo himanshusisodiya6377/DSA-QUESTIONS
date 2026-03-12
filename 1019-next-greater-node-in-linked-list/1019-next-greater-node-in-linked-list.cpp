@@ -1,52 +1,36 @@
 class Solution {
 public:
-    ListNode*reversell(ListNode*head){
-        ListNode*t=head;
-        ListNode*temp=head->next;
-        ListNode*test=head->next->next;
-        while(head->next!=NULL){
-            temp->next=head;
-            head=temp;
-            temp=test;
-            if(test==NULL) break;
-            test=test->next;
-        }
-        t->next=NULL;
-        return head;
-    }
-    int sizeofll(ListNode*head){
-        ListNode*temp=head;
-        int count=0;
-        while(temp!=NULL){
-            count++;
-            temp=temp->next;
-        }
-        return count;
-    }
     vector<int> nextLargerNodes(ListNode* head) {
-      int size=sizeofll(head);
-      vector<int>ans(size,0);
-      if(size==1) return ans;
-      ListNode*tempo=reversell(head);
-       ListNode*temp=tempo;
-       stack<int>st;
-       int i=1;//for indexing
-       st.push(temp->val);
-       temp=temp->next;
-       
-        while(temp!=NULL){//presmaller
-            while(st.size()>0 && st.top()<=temp->val){
-                st.pop();
-            }
-            if(st.size()!=0){
-                ans[i]=st.top();
-            }
-            st.push(temp->val);
+        int sz=0;
+        ListNode*temp=head;
+        while(temp!=NULL){
+            sz++;
             temp=temp->next;
-            i++;
         }
-        reverse(ans.begin(),ans.end());
-       
+        vector<int>ans(sz,0);
+
+        stack<pair<int,int>>st;
+
+        temp=head;
+        int idx=0;
+        while(temp!=NULL){
+            // if(st.empty()) st.push({temp->val,idx});
+            
+            while(!st.empty()){
+               if(st.top().first<temp->val){
+                ans[st.top().second]=temp->val;
+                st.pop();
+               }
+               else break;
+            }
+
+            st.push({temp->val,idx});
+            temp=temp->next;
+
+
+            idx++;
+        }
+
         return ans;
     }
 };
