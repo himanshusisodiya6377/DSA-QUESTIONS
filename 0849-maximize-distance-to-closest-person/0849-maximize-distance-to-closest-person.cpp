@@ -26,7 +26,7 @@ public:
                 ans=min(max(ans,(pre[i]!=-1 ? i-pre[i] :0)),max(ans,(suff[i]!=n ? suff[i]-i : 0)));
             }
 
-            cout<<ans<<" "<<i<<endl;
+            // cout<<ans<<" "<<i<<endl;
         }
 
         return ans;
