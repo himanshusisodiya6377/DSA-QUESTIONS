@@ -29,7 +29,7 @@ public:
         while(lo<=hi){
             long long mid=lo+(hi-lo)/2;
             
-                cout<<mid<<endl;
+                // cout<<mid<<endl;
             if(check(houses,mid,heaters)){
                 ans=mid;
                 hi=mid-1;
