@@ -5,19 +5,24 @@ public:
 
         int ans=INT_MAX;
         int sol=0;
+        
+        sort(nums.begin(),nums.end());
 
-        for(int i=0;i<n;i++){
-            for(int j=i+1;j<n;j++){
-                for(int k=j+1;k<n;k++){
-                    int sum=nums[i]+nums[j]+nums[k];
-                    int diff=abs(target-sum);
+        for(int k=0;k<n;k++){
+           int i=k+1,j=n-1;
+           while(i<j){
+           int sum=nums[k]+nums[i]+nums[j];
+           int diff=abs(target-sum);
 
-                    if(diff<ans){
-                        ans=diff;
-                        sol=sum;
-                    }
-                }
-            }
+           if(diff<ans){
+            ans=diff;
+            sol=sum;
+            // cout<<nums[k]<<" "<<nums[i]<<" "<<nums[j]<<endl;
+           }
+            
+            if(sum<=target) i++;
+            else j--;
+           }
         }
 
         return sol;
