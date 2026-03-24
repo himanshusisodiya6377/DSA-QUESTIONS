@@ -8,7 +8,7 @@ public:
             // cout<<x&1<<" "<<y&1<<endl;
             x=x>>1;
             y=y>>1;
-            cout<<ans<<" "<<x<<" "<<y<<endl;
+            // cout<<ans<<" "<<x<<" "<<y<<endl;
         }
 
         return ans;
