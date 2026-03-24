@@ -9,7 +9,7 @@ public:
         while(i<32){
             // cout<<(n & (1<<i))<<endl;
             if((n & (1<<i))>0){
-                x+=pow(2,31-i);
+                x+=(1<<(31-i));
             }
             i++;
             // cout<<x<<" "<<i<<endl;
