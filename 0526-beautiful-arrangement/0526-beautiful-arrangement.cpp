@@ -27,6 +27,7 @@ public:
         return mp[v]=ans;
     }
     int countArrangement(int n) {
+        if(n<4) return n;
         vector<int>v(n+1,0);
         mp.clear();
         return solve(n,v);
