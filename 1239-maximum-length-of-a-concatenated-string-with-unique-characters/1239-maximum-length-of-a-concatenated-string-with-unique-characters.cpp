@@ -35,7 +35,7 @@ public:
             exclude=solve(arr,idx+1,ans);
         }
 
-        return max(include,exclude);
+        return mp[ans]=max(include,exclude);
     }
     int maxLength(vector<string>& arr) {
         int n=arr.size();
