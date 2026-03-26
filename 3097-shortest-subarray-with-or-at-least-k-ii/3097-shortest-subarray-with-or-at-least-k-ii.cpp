@@ -17,7 +17,7 @@ public:
             }
         }
 
-        cout<<num<<endl;
+        // cout<<num<<endl;
 
         return num;
     }
