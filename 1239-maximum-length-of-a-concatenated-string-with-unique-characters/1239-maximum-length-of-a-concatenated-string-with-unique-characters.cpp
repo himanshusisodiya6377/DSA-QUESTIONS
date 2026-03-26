@@ -2,46 +2,46 @@ class Solution {
 public:
     int cnt;
     // string ans;
-    bool check(string &ans,string &s){
-        unordered_set<char>st;
-        unordered_set<char>pt;
-        for(auto &it : ans) st.insert(it);
+    unordered_map<string,int>mp;
+    bool check(string &s,string &ans){
+      vector<char>visit(26,0);
 
-        for(auto &it :s){
-            if(st.count(it) || pt.count(it)) return false;
-            pt.insert(it);
-        }
+      for(auto &it : s){
+        if(visit[it-'a']>0) return false;
+        visit[it-'a']++;
+      }
 
-        // st.clear();
-        
+      for(auto &it : ans){
+         if(visit[it-'a']>0) return false;
+      }
 
-        return true;
+      return true;
     }
-    void solve(vector<string>&arr,int idx,string ans){
+    int solve(vector<string>&arr,int idx,string ans){
         if(idx>=arr.size()){
-         cnt=max(cnt,(int)ans.length());
-        //    cout<<ans<<" "<<cnt<<endl;
-           return;
+           return ans.length();
+        }
+        
+        if(mp.find(ans)!=mp.end()) return mp[ans];
+        
+        int include=0;
+        int exclude=0;
+
+        if(check(arr[idx],ans)){
+            include=solve(arr,idx+1,ans+arr[idx]);
+            exclude=solve(arr,idx+1,ans);
+        }
+        else{
+            exclude=solve(arr,idx+1,ans);
         }
 
-        bool flag=false;
-
-        if(check(ans,arr[idx])){
-        flag=true; 
-        ans+=arr[idx];
-        // cout<<ans<<endl;
-        solve(arr,idx+1,ans);
-        }
-        //  cout<<ans<<endl;
-        if(flag) ans=ans.substr(0,ans.length()-arr[idx].length());
-        // cout<<ans<<endl;
-        solve(arr,idx+1,ans);
+        return max(include,exclude);
     }
     int maxLength(vector<string>& arr) {
         int n=arr.size();
-        cnt=0;
+        // cnt=0;
+        mp.clear();
         string ans="";
-        solve(arr,0,ans);
-        return cnt;
+        return solve(arr,0,ans);
     }
 };
