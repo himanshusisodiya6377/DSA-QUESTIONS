@@ -37,7 +37,7 @@ public:
         if(word[idx]=='.'){
             bool fg=false;
             for(auto &it : curr->arr){
-                if(it!=NULL) fg=fg | check(word,idx+1,it);
+                if(it!=NULL) fg=fg || check(word,idx+1,it);
             }
 
             return fg;
