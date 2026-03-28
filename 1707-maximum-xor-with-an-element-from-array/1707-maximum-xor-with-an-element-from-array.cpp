@@ -82,7 +82,8 @@ public:
                 ans[idx]=-1;
                 continue;
             }
-
+            
+            // i am comparing i with y
             while(i<nums.size() && nums[i]<=y){
                trie->insert(nums[i]);
                i++;
