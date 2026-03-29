@@ -27,7 +27,7 @@ public:
                     curr->arr[word[i] - 'a'] = node;
                 }
                 curr = curr->arr[word[i] - 'a'];
-                curr->st.push_back(word);
+                if((curr->st).size()<3) curr->st.push_back(word);
             }
             curr->flag = true;
         }
@@ -44,10 +44,10 @@ public:
                     curr = NULL; // Force subsequent characters to also be empty
                 } else {
                     curr = curr->arr[word[i] - 'a'];
-                    for(int j=0;j<min(3,(int)((curr->st).size()));j++){
-                        s.push_back((curr->st)[j]);
-                    }
-                    ans.push_back(s);
+                    // for(int j=0;j<min(3,(int)((curr->st).size()));j++){
+                    //     s.push_back((curr->st)[j]);
+                    // }
+                    ans.push_back(curr->st);
                 }
             }
 
