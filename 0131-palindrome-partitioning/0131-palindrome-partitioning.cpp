@@ -1,7 +1,7 @@
 class Solution {
 public:
     vector<vector<string>>ans;
-    bool ispallindrome(string s,int start,int end){
+    bool ispallindrome(string &s,int start,int end){
          int i=start,j=end;
 
          while(i<=j){
@@ -14,7 +14,7 @@ public:
 
          return true;
     }
-    void solve(string s,int start,int end,vector<string>a){
+    void solve(string &s,int start,int end,vector<string>&a){
         if(start>=end){
             ans.push_back(a);
             return;
