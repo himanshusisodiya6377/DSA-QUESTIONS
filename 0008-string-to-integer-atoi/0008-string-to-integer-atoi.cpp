@@ -1,36 +1,33 @@
 class Solution {
 public:
     int myAtoi(string s) {
-        long long n=s.length();
+        int i = 0, n = s.size();
 
-         long long  num=0;
-         long long  maxi_r=pow(2,31)-1;
-         long long  mini_r=-pow(2,31);
-        bool flag=false;
-        bool reading=false;
-        for(int i=0;i<n;i++){
-            if(!isdigit(s[i]) && reading) return num;
-            else if(s[i]=='-') {
-                flag=true;
-                reading=true;
-            }
-            else if(s[i]=='+' && !reading) {
-                flag=false;
-                reading=true;
-            }
-            else if(!isdigit(s[i]) && s[i]!=' ') {
-                // cout<<"yahi hua he";
-                return num;
-            }
-            else if(isdigit(s[i])){
-                num=1LL*num*10+(flag ? -(s[i]-'0') : (s[i]-'0'));
-                // cout<<num<<endl;
-                if(num<mini_r) num=mini_r;
-                else if(num>maxi_r) num=maxi_r;
-                reading=true;
-            }
+        // 1. Skip spaces
+        while (i < n && s[i] == ' ') i++;
+
+        // 2. Sign
+        int sign = 1;
+        if (i < n && (s[i] == '+' || s[i] == '-')) {
+            sign = (s[i] == '-') ? -1 : 1;
+            i++;
         }
-        
-        return  num;
+
+        // 3. Convert digits
+        long long num = 0;
+        while (i < n && isdigit(s[i])) {
+            int digit = s[i] - '0';
+
+            // 4. Overflow check BEFORE adding
+            if (num > INT_MAX / 10 || 
+               (num == INT_MAX / 10 && digit > 7)) {
+                return sign == 1 ? INT_MAX : INT_MIN;
+            }
+
+            num = num * 10 + digit;
+            i++;
+        }
+
+        return sign * num;
     }
 };
