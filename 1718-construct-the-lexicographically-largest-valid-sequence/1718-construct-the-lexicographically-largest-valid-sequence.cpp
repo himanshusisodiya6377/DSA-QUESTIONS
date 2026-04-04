@@ -1,5 +1,6 @@
 class Solution {
 public:
+   //instead of filling n at respective position try all posibility at particular idx
     bool solve(vector<int>&ans,int n,int idx,vector<bool>&visit){
         if(idx>=ans.size()) return true;
         
