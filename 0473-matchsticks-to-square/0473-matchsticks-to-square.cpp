@@ -1,5 +1,6 @@
 class Solution {
 public:
+    //did it but look for optimal appraoch 
     int tar;
     map<pair<vector<bool>,int>,bool>mp;
     bool solve(vector<int>&mat,int target,int sides,vector<bool>&visit){
