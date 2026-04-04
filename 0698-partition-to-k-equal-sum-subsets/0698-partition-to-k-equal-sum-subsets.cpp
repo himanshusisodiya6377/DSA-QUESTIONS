@@ -1,5 +1,6 @@
 class Solution {
 public:
+//do it yaato raat  hi lo bahut important question he ye bhai jaan 
     bool solve(vector<int>& nums, vector<bool>& vis, int k, int currSum, int target, int start) {
         if (k == 1) return true;
 
