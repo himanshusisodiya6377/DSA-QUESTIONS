@@ -17,17 +17,17 @@ public:
         }
 
         // avoid duplicate
-        if (s2 + val <= target) {
+        if (s2 != s1 && s2 + val <= target) {
             if (func(matchsticks, target, s1, s2 + val, s3, s4, idx+1))
                 return true;
         }
 
-        if (s3 + val <= target) {
+        if (s3 != s2 && s3 != s1 && s3 + val <= target) {
             if (func(matchsticks, target, s1, s2, s3 + val, s4, idx+1))
                 return true;
         }
 
-        if (s4 + val <= target) {
+        if (s4 != s3 && s4 != s2 && s4 != s1 && s4 + val <= target) {
             if (func(matchsticks, target, s1, s2, s3, s4 + val, idx+1))
                 return true;
         }
