@@ -1,4 +1,4 @@
-<h2><a href="https://leetcode.com/problems/find-k-pairs-with-smallest-sums">373. Find K Pairs with Smallest Sums</a></h2><h3>Medium</h3><hr><p>You are given two integer arrays <code>nums1</code> and <code>nums2</code> sorted in <strong>non-decreasing&nbsp;order</strong> and an integer <code>k</code>.</p>
+<h2><a href="https://leetcode.com/problems/find-k-pairs-with-smallest-sums/?envType=problem-list-v2&envId=dsa-sequence-valley-heap">373. Find K Pairs with Smallest Sums</a></h2><h3>Medium</h3><hr><p>You are given two integer arrays <code>nums1</code> and <code>nums2</code> sorted in <strong>non-decreasing&nbsp;order</strong> and an integer <code>k</code>.</p>
 
 <p>Define a pair <code>(u, v)</code> which consists of one element from the first array and one element from the second array.</p>
 
