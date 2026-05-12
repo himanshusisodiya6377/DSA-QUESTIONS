@@ -1,39 +1,32 @@
 class Solution {
 public:
    int minSwaps(vector<int>& arr) {
-    int n = arr.size();
+   int n=arr.size();
 
-    vector<pair<int,int>> v;
+   vector<pair<int,int>>v;
 
-    for(int i = 0; i < n; i++) {
-        v.push_back({arr[i], i});
+   for(int i=0;i<n;i++){
+    v.push_back({arr[i],i});
+   }
+   int swp=0;
+   sort(v.begin(),v.end());
+
+   vector<bool>vis(n,false);
+
+   for(int i=0;i<n;i++){
+    if(vis[i]==true || v[i].second==i) continue;
+    int cyc=0;
+    int j=i;
+
+    while(!vis[j]){
+        vis[j]=true;
+        j=v[j].second;
+        cyc++;
     }
+    swp+=cyc-1;
+   }
 
-    sort(v.begin(), v.end());
-
-    vector<bool> vis(n, false);
-
-    int swaps = 0;
-
-    for(int i = 0; i < n; i++) {
-
-        // already correct
-        if(vis[i] || v[i].second == i)
-            continue;
-
-        int cycle = 0;
-        int j = i;
-
-        while(!vis[j]) {
-            vis[j] = true;
-            j = v[j].second;
-            cycle++;
-        }
-
-        swaps += (cycle - 1);
-    }
-
-    return swaps;
+   return swp;
 }
     int minimumOperations(TreeNode* root) {
         queue<TreeNode*>q;
