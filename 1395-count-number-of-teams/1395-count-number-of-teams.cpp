@@ -1,54 +1,47 @@
 class Solution {
 public:
-    int dp[1001][1001][2][4];
-
-    int solve(vector<int>& rating, int idx, int prevIdx, int trend, int count) {
-
-        if (count == 3)
-            return 1;
-
-        if (idx >= rating.size())
-            return 0;
-
-        if (dp[idx][prevIdx + 1][trend][count] != -1) {
-            return dp[idx][prevIdx + 1][trend][count];
-        }
-
-        int take = 0;
-
-        // Increasing
-        if (trend == 1) {
-
-            if (prevIdx == -1 || rating[idx] > rating[prevIdx]) {
-
-                take = solve(rating, idx + 1, idx, trend, count + 1);
-            }
-        }
-
-        // Decreasing
-        else {
-
-            if (prevIdx == -1 || rating[idx] < rating[prevIdx]) {
-
-                take = solve(rating, idx + 1, idx, trend, count + 1);
-            }
-        }
-
-        int notTake = solve(rating, idx + 1, prevIdx, trend, count);
-
-        return dp[idx][prevIdx + 1][trend][count] = take + notTake;
-    }
 
     int numTeams(vector<int>& rating) {
 
-        memset(dp, -1, sizeof(dp));
+        int n = rating.size();
 
-        int increasing = solve(rating, 0, -1, 1, 0);
+        int ans = 0;
 
-        memset(dp, -1, sizeof(dp));
+        for (int j = 0; j < n; j++) {
 
-        int decreasing = solve(rating, 0, -1, 0, 0);
+            int smallerLeft = 0;
+            int largerLeft = 0;
 
-        return increasing + decreasing;
+            int smallerRight = 0;
+            int largerRight = 0;
+
+            // Left side
+            for (int i = 0; i < j; i++) {
+
+                if (rating[i] < rating[j]) {
+                    smallerLeft++;
+                }
+                else if (rating[i] > rating[j]) {
+                    largerLeft++;
+                }
+            }
+
+            // Right side
+            for (int k = j + 1; k < n; k++) {
+
+                if (rating[k] > rating[j]) {
+                    largerRight++;
+                }
+                else if (rating[k] < rating[j]) {
+                    smallerRight++;
+                }
+            }
+
+            ans += (smallerLeft * largerRight);
+
+            ans += (largerLeft * smallerRight);
+        }
+
+        return ans;
     }
 };
