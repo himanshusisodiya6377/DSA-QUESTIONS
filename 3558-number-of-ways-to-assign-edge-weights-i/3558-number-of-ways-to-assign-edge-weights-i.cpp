@@ -53,7 +53,7 @@ public:
         }
 
         int depth=get_depth(n,adj);
-        cout<<depth<<endl;
+        // cout<<depth<<endl;
         long long ans=0;
 
         ans+=modpow(2,depth-1,mod);
