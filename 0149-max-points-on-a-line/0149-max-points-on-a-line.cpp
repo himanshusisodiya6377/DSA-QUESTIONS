@@ -1,18 +1,39 @@
 class Solution {
 public:
+    int gcd(int a,int b){
+        if(b==0) return a;
+        return gcd(b,a%b);
+    }
     int maxPoints(vector<vector<int>>& points) {
-        int maxi=1;
         int n=points.size();
-        for(int i=0;i<n;i++){ //x1 y1
+        int maxi=0;
 
-            for(int j=i+1;j<n;j++){ //x2 y2
-                int cnt=0;
-                for(int k=0;k<n;k++){
-                    if(((points[k][1]-points[i][1])*(points[j][0]-points[i][0]))==((points[j][1]-points[i][1])*(points[k][0]-points[i][0]))) cnt++;
+        for(int i=0;i<n;i++){
+            unordered_map<string,int>mp;
+            int curr_max=0;
+
+            for(int j=0;j<n;j++){
+                
+                if(i==j) continue;
+                int dx=points[j][0]-points[i][0];
+                int dy=points[j][1]-points[i][1];
+                
+                int gd=gcd(dx,dy);
+                dx/=gd;
+                dy/=gd;
+
+                if(dx<0){
+                    dx=-dx;
+                    dy=-dy;
                 }
-                maxi=max(maxi,cnt);
+
+                string s=to_string(dx)+"/"+to_string(dy);
+                // cout<<s<<endl;
+                mp[s]++;
+                curr_max=max(curr_max,mp[s]);
             }
+            maxi=max(maxi,curr_max);
         }
-        return maxi;
+        return maxi+1;
     }
 };
