@@ -92,10 +92,7 @@ public:
             }
         }
 
-        for (auto& it : ds.mp) {
-            cout << it.first << " " << it.second.first << " "
-                 << it.second.second << endl;
-        }
+       
 
         return sum;
     }
