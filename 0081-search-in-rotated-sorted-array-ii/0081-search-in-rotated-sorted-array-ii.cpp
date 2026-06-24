@@ -11,6 +11,10 @@ public:
       while(lo<=hi){
         int mid=(lo+hi)/2;
         if(nums[mid]==target) return true;
+        else if(nums[mid]==nums[lo] && nums[mid]==nums[hi]){
+            lo++;
+            hi--;
+        }
         else if(nums[lo]<nums[mid]){//if right part is sorted
              if(target<=nums[mid] && target>=nums[lo]) hi=mid-1;
              else lo=mid+1;
