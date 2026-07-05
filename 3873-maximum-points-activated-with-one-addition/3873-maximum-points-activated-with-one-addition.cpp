@@ -64,7 +64,7 @@ public:
              }
         }
 
-        for(int i=0;i<points.size();i++) cout<<ds.size[i]<<" ";
+        // for(int i=0;i<points.size();i++) cout<<ds.size[i]<<" ";
 
         int ans=0;
         priority_queue<int>pq;
