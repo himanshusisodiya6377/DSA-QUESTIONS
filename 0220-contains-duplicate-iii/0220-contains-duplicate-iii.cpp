@@ -1,22 +1,30 @@
 class Solution {
 public:
     bool containsNearbyAlmostDuplicate(vector<int>& nums, int indexDiff, int valueDiff) {
+        // if (indexDiff <= 0 || valueDiff < 0) return false;
 
-        set<int> ss(nums.begin(), nums.end());
+        set<long long> window; // ordered values in current index window
 
-        if(ss.size() == nums.size() && valueDiff == 0)
-            return false;
-
-        for(int i = 0; i < nums.size(); i++) {
-
-            for(int j = i + 1; j < i + 1 + indexDiff; j++) {
-
-                if(j >= nums.size())
-                    break;
-
-                if(abs((long long)nums[i] - (long long)nums[j]) <= valueDiff)
-                    return true;
+        for (int i = 0; i < nums.size(); ++i) {
+            // Remove element that is now out of allowed index distance.
+            if (i > indexDiff) {
+                window.erase((long long)nums[i - indexDiff - 1]);
             }
+
+            long long x = nums[i];
+            long long low = x - (long long)valueDiff;
+            long long high = x + (long long)valueDiff;
+
+            // First value >= low
+            auto it = window.lower_bound(low);
+
+            // lower_bound only guarantees "not too small".
+            // We still must ensure "not too large" (<= high).
+            if (it != window.end() && *it <= high) {
+                return true;
+            }
+
+            window.insert(x);
         }
 
         return false;
