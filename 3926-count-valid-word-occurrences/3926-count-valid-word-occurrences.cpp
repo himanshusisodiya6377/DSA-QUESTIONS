@@ -4,7 +4,7 @@ public:
         string s="";
         for(auto &it : chunks) s+=it;
 
-        cout<<s<<endl;
+        // cout<<s<<endl;
         int cnt=0;
         unordered_map<string,int>mp;
 
@@ -39,9 +39,9 @@ public:
         if(curr!="") mp[curr]++;
 
 
-        for(auto &it : mp){
-            cout<<it.first<<" "<<it.second<<endl;
-        }
+        // for(auto &it : mp){
+        //     cout<<it.first<<" "<<it.second<<endl;
+        // }
         vector<int>ans(queries.size(),0);
 
         for(int i=0;i<queries.size();i++){
